@@ -4,9 +4,9 @@
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    PlusMinus w;
-    w.resize(400,400);
-    w.setWindowTitle("PlusMinus");
+    Calculator w;
+    w.resize(600,400);
+    w.setWindowTitle("Calculator");
     w.show();
     return app.exec();
 }

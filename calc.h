@@ -5,18 +5,22 @@
 #include <QPushButton>
 #include <QLabel>
 
-class PlusMinus : public QWidget{
+class Calculator : public QWidget{
     Q_OBJECT
     public:
-        PlusMinus(QWidget *parent = 0);
+        Calculator(QWidget *parent = 0);
 
     private slots:
         void plus();
         void minus();
         void multiply();
         void divide();
+        void equal();
+        void clear();
 
-        void add_number(int digit);
+        void add_digit(int digit);
+        void change_to_first_number();
+        void change_to_second_number();
 
         void add_one();
         void add_two();
@@ -28,6 +32,12 @@ class PlusMinus : public QWidget{
         void add_eight();
         void add_nine();
         void add_zero();
+
     private:
-        QLabel *lbl;
+        QLabel *first_number;
+        QLabel *second_number;
+        QLabel *result_number;
+        QLabel *operation_sign;
+        QLabel *choosen_number;
+        bool is_first_number;
 };
