@@ -13,6 +13,21 @@ class PlusMinus : public QWidget{
     private slots:
         void plus();
         void minus();
+        void multiply();
+        void divide();
+
+        void add_number(int digit);
+
+        void add_one();
+        void add_two();
+        void add_three();
+        void add_four();
+        void add_five();
+        void add_six();
+        void add_seven();
+        void add_eight();
+        void add_nine();
+        void add_zero();
     private:
         QLabel *lbl;
 };
