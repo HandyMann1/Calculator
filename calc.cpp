@@ -31,7 +31,7 @@ Calculator::Calculator(QWidget * parent)
     second_number = new QLabel("0",this);
     result_number = new QLabel("0",this);
     operation_sign = new QLabel(".", this);
-    choosen_number = new QLabel("first number choosen", this);
+    choosen_number = new QLabel("first number chosen", this);
 
     bool is_first_number = true;
 
