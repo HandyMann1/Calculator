@@ -2,7 +2,7 @@
 #include <QGridLayout>
 #include <string>
 #include <QMessageBox>
-
+#include <iostream>
 Calculator::Calculator(QWidget * parent)
     : QWidget(parent){
 
@@ -13,16 +13,15 @@ Calculator::Calculator(QWidget * parent)
     QPushButton *equal_btn = new QPushButton("=", this);
     QPushButton *clear_btn = new QPushButton("Clear", this);
 
-    QPushButton *add_one_btn = new QPushButton("1", this);
-    QPushButton *add_two_btn = new QPushButton("2", this);
-    QPushButton *add_three_btn = new QPushButton("3", this);
-    QPushButton *add_four_btn = new QPushButton("4", this);
-    QPushButton *add_five_btn = new QPushButton("5", this);
-    QPushButton *add_six_btn = new QPushButton("6", this);
-    QPushButton *add_seven_btn = new QPushButton("7", this);
-    QPushButton *add_eight_btn = new QPushButton("8", this);
-    QPushButton *add_nine_btn = new QPushButton("9", this);
-    QPushButton *add_zero_btn = new QPushButton("0", this);
+    const QString buttonLabels[] = { "0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    QPushButton *add_btn[10];
+    for (const QString& label : buttonLabels) {
+        std::cout << label.toStdString() << std::endl;
+    }
+    for(int i = 0; i < 10;i++){
+        add_btn[i] = new QPushButton(buttonLabels[i], this);
+    }
+
 
     QPushButton *choose_first_number_btn = new QPushButton("Choose first number", this);
     QPushButton *choose_second_number_btn = new QPushButton("Choose second number", this);
@@ -42,16 +41,15 @@ Calculator::Calculator(QWidget * parent)
     grid->addWidget(divide_btn, 3, 3);
     grid->addWidget(equal_btn, 3, 2);
 
-    grid->addWidget(add_one_btn, 0, 0);
-    grid->addWidget(add_two_btn, 0, 1);
-    grid->addWidget(add_three_btn, 0, 2);
-    grid->addWidget(add_four_btn, 1, 0);
-    grid->addWidget(add_five_btn, 1, 1);
-    grid->addWidget(add_six_btn, 1, 2);
-    grid->addWidget(add_seven_btn, 2, 0);
-    grid->addWidget(add_eight_btn, 2, 1);
-    grid->addWidget(add_nine_btn, 2, 2);
-    grid->addWidget(add_zero_btn, 3, 1);
+    for(int i = 0; i <= 2; ++i){
+        for (int j = 0; j <=2; ++j){
+            grid->addWidget(add_btn[i*3 + j+1],i,j);
+        }
+    }
+
+
+
+    grid->addWidget(add_btn[0], 3, 1);
 
 
     grid->addWidget(first_number, 4, 0);
@@ -73,24 +71,17 @@ Calculator::Calculator(QWidget * parent)
     connect(equal_btn, &QPushButton::clicked, this, &Calculator::equal);
     connect(clear_btn,&QPushButton::clicked, this, &Calculator::clear);
 
-    connect(add_one_btn, &QPushButton::clicked, this, &Calculator::add_one);
-    connect(add_two_btn, &QPushButton::clicked, this, &Calculator::add_two);
-    connect(add_three_btn, &QPushButton::clicked, this, &Calculator::add_three);
-    connect(add_four_btn, &QPushButton::clicked, this, &Calculator::add_four);
-    connect(add_five_btn, &QPushButton::clicked, this, &Calculator::add_five);
-    connect(add_six_btn, &QPushButton::clicked, this, &Calculator::add_six);
-    connect(add_seven_btn, &QPushButton::clicked, this, &Calculator::add_seven);
-    connect(add_eight_btn, &QPushButton::clicked, this, &Calculator::add_eight);
-    connect(add_nine_btn, &QPushButton::clicked, this, &Calculator::add_nine);
-    connect(add_zero_btn, &QPushButton::clicked, this, &Calculator::add_zero);
+    for (int i = 0; i < 10; i++){
 
+        connect(add_btn[i], &QPushButton::clicked, this,[this,i] {add_digit(i);});
+     }
 
     connect(choose_first_number_btn, &QPushButton::clicked,this, &Calculator::change_to_first_number);
     connect(choose_second_number_btn, &QPushButton::clicked,this, &Calculator::change_to_second_number);
-
-
-
 }
+
+
+
 
 void Calculator::change_to_first_number(){
     choosen_number->setText(QString("first number chosen"));
@@ -164,34 +155,5 @@ void Calculator::add_digit(int digit){
         }
     }
 }
-void Calculator::add_one(){
-    add_digit(1);
-}
-void Calculator::add_two(){
-    add_digit(2);
-}
-void Calculator::add_three(){
-    add_digit(3);
-}
-void Calculator::add_four(){
-    add_digit(4);
-}
-void Calculator::add_five(){
-    add_digit(5);
-}
-void Calculator::add_six(){
-    add_digit(6);
-}
-void Calculator::add_seven(){
-    add_digit(7);
-}
-void Calculator::add_eight(){
-    add_digit(8);
-}
-void Calculator::add_nine(){
-    add_digit(9);
-}
-void Calculator::add_zero(){
-    add_digit(0);
-}
+
 

@@ -22,16 +22,6 @@ class Calculator : public QWidget{
         void change_to_first_number();
         void change_to_second_number();
 
-        void add_one();
-        void add_two();
-        void add_three();
-        void add_four();
-        void add_five();
-        void add_six();
-        void add_seven();
-        void add_eight();
-        void add_nine();
-        void add_zero();
 
     private:
         QLabel *first_number;
