@@ -18,6 +18,7 @@ class Calculator : public QWidget{
         void divide();
         void equal();
         void clear();
+        void remove();
 
         void add_digit(int digit);
 

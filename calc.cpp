@@ -11,7 +11,8 @@ Calculator::Calculator(QWidget * parent)
     QPushButton *multiply_btn = new QPushButton("*", this);
     QPushButton *divide_btn = new QPushButton("/", this);
     QPushButton *equal_btn = new QPushButton("=", this);
-    QPushButton *clear_btn = new QPushButton("Clear", this);
+    QPushButton *clear_btn = new QPushButton("AC", this);
+    QPushButton *remove_digit_btn = new QPushButton("C",this);
 
     const QString buttonLabels[] = { "0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
     QPushButton *add_btn[10];
@@ -28,6 +29,7 @@ Calculator::Calculator(QWidget * parent)
     grid->addWidget(multiply_btn, 2, 3);
     grid->addWidget(divide_btn, 3, 3);
     grid->addWidget(equal_btn, 3, 2);
+    grid->addWidget(remove_digit_btn,3,0);
 
     for(int i = 0; i <= 2; ++i){
         for (int j = 0; j <=2; ++j){
@@ -48,6 +50,7 @@ Calculator::Calculator(QWidget * parent)
     connect(divide_btn, &QPushButton::clicked, this, &Calculator::divide);
     connect(equal_btn, &QPushButton::clicked, this, &Calculator::equal);
     connect(clear_btn,&QPushButton::clicked, this, &Calculator::clear);
+    connect(remove_digit_btn,&QPushButton::clicked, this, &Calculator::remove);
 
     for (int i = 0; i < 10; i++){
 
@@ -88,6 +91,7 @@ void Calculator::divide(){
     val += " / ";
     written_number->setText(val);
 }
+
 void Calculator::equal(){
     QString number = "";
     std::vector<std::string> numbers;
@@ -135,6 +139,13 @@ void Calculator::equal(){
 
 void Calculator::clear(){
     written_number->setText(QString("0"));
+}
+void Calculator::remove(){
+    QString val = written_number->text();
+    if(val != '0'){
+        val.chop(1);
+        written_number->setText(val);
+    }
 }
 
 
