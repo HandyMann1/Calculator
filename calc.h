@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QPushButton>
 #include <QLabel>
+#include <QLineEdit>
 
 class Calculator : public QWidget{
     Q_OBJECT
@@ -19,15 +20,12 @@ class Calculator : public QWidget{
         void clear();
 
         void add_digit(int digit);
-        void change_to_first_number();
-        void change_to_second_number();
+
 
 
     private:
-        QLabel *first_number;
-        QLabel *second_number;
-        QLabel *result_number;
-        QLabel *operation_sign;
-        QLabel *choosen_number;
-        bool is_first_number;
+        QLineEdit *written_number;
+
+
+
 };
