@@ -9,8 +9,9 @@
 #include <QMessageBox>
 Login::Login(QWidget * parent)
     : QWidget(parent){
-    QLabel *username_lbl = new QLabel("User Name");
+    QLabel *username_lbl = new QLabel("Username");
     QLabel *password_lbl = new QLabel("Password");
+    QLabel *hint_lbl = new QLabel("Username:test    password:test");
 
     enter_username = new QLineEdit(this);
     enter_password = new QLineEdit(this);
@@ -22,7 +23,8 @@ Login::Login(QWidget * parent)
     grid->addWidget(enter_username,0,1);
     grid->addWidget(password_lbl,1,0);
     grid->addWidget(enter_password,1,1);
-    grid->addWidget(login_btn,2,1);
+    grid->addWidget(login_btn,3,0,1,2);
+    grid->addWidget(hint_lbl, 2, 0,1,2,Qt::AlignCenter);
 
 
     setLayout(grid);
